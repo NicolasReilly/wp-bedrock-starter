@@ -3,10 +3,22 @@
 @source "../views/";
 @source "../../app/";
 
+
 @theme {
     /* Ajoute une couleur personnalisée : génère text-brand, bg-brand, etc. */
-    --color-brand: #38bdf8;
-    --color-dark-bg: #0f172a;
+        /* Ton vert principal */
+    --color-brand: #25db41;
+    
+    /* Un vert sombre pour les dégradés ou les états "hover" */
+    --color-brand-dark: #49a863;
+
+    /* Des gris bleutés pour ton Dark Mode (mieux que le noir pur) */
+    --color-slate-950: #0a0f16;
+    --color-slate-900: #111827;
+    --color-slate-800: #1f2937;
+
+    /* Couleur de texte "off-white" pour éviter la fatigue visuelle */
+    --color-text-main: #f8fafc;
 
     /* Change la police mono par défaut */
     --font-mono: "Fira Code", monospace;

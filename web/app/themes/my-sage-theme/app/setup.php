@@ -29,14 +29,14 @@ add_filter('block_editor_settings_all', function ($settings) {
  * @return void
  */
 add_filter('admin_head', function () {
-    if (! get_current_screen()?->is_block_editor()) {
+    if (!get_current_screen()?->is_block_editor()) {
         return;
     }
 
     $dependencies = json_decode(Vite::content('editor.deps.json'));
 
     foreach ($dependencies as $dependency) {
-        if (! wp_script_is($dependency)) {
+        if (!wp_script_is($dependency)) {
             wp_enqueue_script($dependency);
         }
     }
@@ -77,6 +77,9 @@ add_action('after_setup_theme', function () {
      */
     register_nav_menus([
         'primary_navigation' => __('Primary Navigation', 'sage'),
+        'cta_navigation' => __('CTA Navigation', 'sage'),
+        'footer_navigation' => __('Footer Navigation', 'sage'),
+
     ]);
 
     /**
@@ -122,6 +125,15 @@ add_action('after_setup_theme', function () {
         'style',
     ]);
 
+    add_theme_support('custom-logo', [
+        'height' => 100,      // Hauteur indicative
+        'width' => 400,      // Largeur indicative
+        'flex-height' => true,     // Permet au client de mettre un logo plus haut
+        'flex-width' => true,     // Permet au client de mettre un logo plus large
+        'header-text' => ['site-title', 'site-description'],
+        'unlink-homepage-logo' => true,     // Ne pas mettre de lien si on est déjà sur la home
+    ]);
+
     /**
      * Enable selective refresh for widgets in customizer.
      *
@@ -152,4 +164,12 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer',
     ] + $config);
+});
+
+/**
+ * Autoriser l'upload de fichiers SVG
+ */
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
 });

@@ -13,12 +13,12 @@
 <body @php(body_class())>
   @php(wp_body_open())
 
-  <div class="bg-brand" id="app">
+  <div class="" id="app">
     <a class="sr-only focus:not-sr-only" href="#main">
       {{ __('Skip to content', 'sage') }}
     </a>
 
-    @include('sections.header')
+    @include('partials.navbar')
 
     <main id="main" class="main">
       @yield('content')
